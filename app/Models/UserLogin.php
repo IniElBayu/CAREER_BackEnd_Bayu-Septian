@@ -2,22 +2,24 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class UserLogin extends Authenticatable
 {
-    use HasApiTokens;
+    use HasApiTokens, Notifiable;
 
-    protected $table = 'user_logins'; // kalau tabel kamu beda, sesuaikan
+    protected $table = 'user_logins';
 
     protected $fillable = [
         'name',
-        'email',
-        'password'
+        'email',    
+        'password',
     ];
 
     protected $hidden = [
-        'password'
+        'password',
+        'remember_token',
     ];
 }
